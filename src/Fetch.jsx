@@ -1,21 +1,20 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
-const Game = ({ incrementScore, resetScore }) => {
+const Game = ({ incrementScore, resetScore, searchLimit }) => {
   const [photos, setPhotos] = useState([]);
   const [clickedPhotosIds, setClickedPhotosIds] = useState([]);
 
   useEffect(() => {
     fetch(
-      "https://api.giphy.com/v1/gifs/search?api_key=VKKci5Qy96JPnJecC17snfZOxg3ROtDs&q=cringe&limit=10"
+      `https://api.giphy.com/v1/gifs/search?api_key=VKKci5Qy96JPnJecC17snfZOxg3ROtDs&q=cringe&limit=${searchLimit}`
     )
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         setPhotos(data.data);
       });
-  }, []);
+  }, [searchLimit]);
 
   const handleClick = (id) => {
     if (clickedPhotosIds.indexOf(id) === -1) {
@@ -23,9 +22,6 @@ const Game = ({ incrementScore, resetScore }) => {
       incrementScore();
       shuffle();
     } else {
-      //   if (score > bestScore) {
-      //     setBestScore(score);
-      //   }
       resetScore();
       setClickedPhotosIds([]);
     }
@@ -47,8 +43,6 @@ const Game = ({ incrementScore, resetScore }) => {
 
     setPhotos(photosCpy);
   };
-
-  console.log(clickedPhotosIds);
 
   return (
     <div className="imagesContainer">

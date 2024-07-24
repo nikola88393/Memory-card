@@ -4,6 +4,7 @@ import { useState } from "react";
 function App() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
+  const [difficulty, setDifficulty] = useState("6");
 
   const incrementScore = () => {
     setScore(score + 1);
@@ -14,11 +15,21 @@ function App() {
     }
     setScore(0);
   };
-
+  const getDifficulty = (diff) => {
+    setDifficulty(diff);
+  };
   return (
     <>
-      <Header score={score} bestScore={bestScore} />
-      <Game incrementScore={incrementScore} resetScore={resetScore} />
+      <Header
+        score={score}
+        bestScore={bestScore}
+        getDifficulty={getDifficulty}
+      />
+      <Game
+        incrementScore={incrementScore}
+        resetScore={resetScore}
+        searchLimit={difficulty}
+      />
     </>
   );
 }
