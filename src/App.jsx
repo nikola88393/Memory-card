@@ -1,10 +1,10 @@
-import Game from "./Fetch";
+import Game from "./Game";
 import Header from "./Header";
 import { useState } from "react";
 function App() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
-  const [difficulty, setDifficulty] = useState("6");
+  const [difficulty, setDifficulty] = useState(6);
 
   const incrementScore = () => {
     setScore(score + 1);

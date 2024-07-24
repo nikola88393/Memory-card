@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 const Game = ({ incrementScore, resetScore, searchLimit }) => {
   const [photos, setPhotos] = useState([]);
   const [clickedPhotosIds, setClickedPhotosIds] = useState([]);
+  const [gameOver, setGameOver] = useState({ over: false, text: "" });
 
   useEffect(() => {
     fetch(
@@ -19,12 +20,23 @@ const Game = ({ incrementScore, resetScore, searchLimit }) => {
   const handleClick = (id) => {
     if (clickedPhotosIds.indexOf(id) === -1) {
       setClickedPhotosIds([...clickedPhotosIds, id]);
+      //if we are in this statement na the statement below is true
+      //the player win because the ClickedPhotosIds will update
+      //after a re-render
+      if (photos.length - 1 === clickedPhotosIds.length) {
+        setGameOver({ over: true, text: "You win!" });
+      }
       incrementScore();
       shuffle();
     } else {
-      resetScore();
-      setClickedPhotosIds([]);
+      setGameOver({ over: true, text: "You lose!" });
     }
+  };
+
+  const restartGame = () => {
+    resetScore();
+    setClickedPhotosIds([]);
+    setGameOver({ over: false, text: "" });
   };
 
   const shuffle = () => {
@@ -44,7 +56,14 @@ const Game = ({ incrementScore, resetScore, searchLimit }) => {
     setPhotos(photosCpy);
   };
 
-  return (
+  console.log(gameOver);
+
+  return gameOver.over ? (
+    <div className="gameOverDisplay">
+      <p>{gameOver.text}</p>
+      <button onClick={restartGame}>Restart</button>
+    </div>
+  ) : (
     <div className="imagesContainer">
       {photos.map((photo) => (
         <div className="imageCard" key={photo.id}>
