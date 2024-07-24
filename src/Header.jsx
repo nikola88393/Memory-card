@@ -23,6 +23,7 @@ const Header = ({ score, bestScore, getDifficulty }) => {
         <p>Score: {score}</p>
         <p>Best Score: {bestScore}</p>
       </div>
+      <p>Click on all images, but never click on one twice!</p>
     </header>
   );
 };

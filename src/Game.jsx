@@ -7,7 +7,7 @@ const Game = ({ incrementScore, resetScore, searchLimit }) => {
 
   useEffect(() => {
     fetch(
-      `https://api.giphy.com/v1/gifs/search?api_key=VKKci5Qy96JPnJecC17snfZOxg3ROtDs&q=cringe&limit=${searchLimit}`
+      `https://api.giphy.com/v1/gifs/search?api_key=VKKci5Qy96JPnJecC17snfZOxg3ROtDs&q=car&limit=${searchLimit}`
     )
       .then((res) => {
         return res.json();

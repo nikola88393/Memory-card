@@ -1,32 +1,50 @@
+:root {
+  --background-color: #fbf6ef;
+  --color1: #dce0d9;
+  --color2: #ead7c3;
+  --shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  --shadow-hover: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 header {
-  border: 1px solid red;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 20px;
   padding: 20px;
+  background-color: var(--color1);
+}
+body {
+  background-color: var(--background-color);
 }
 .imagesContainer {
   width: 90%;
   margin: 0 auto;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 10px;
+  gap: 20px;
+  padding: 20px;
 }
 .imageCard {
-  border: 1px solid red;
-  width: 250px;
-  height: 250px;
+  /* border: 1px solid red; */
+  background-color: var(--color2);
+  width: 300px;
+  height: 300px;
   padding: 10px;
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+  transition: all 0.2s ease-out;
+}
+.imageCard:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
 }
 .image {
   width: 100%;
