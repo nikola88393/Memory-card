@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
-const Game = ({ incrementScore, resetScore, searchLimit }) => {
+const Game = ({ incrementScore, resetScore, searchLimit, searchKeyword }) => {
   const [photos, setPhotos] = useState([]);
   const [clickedPhotosIds, setClickedPhotosIds] = useState([]);
   const [gameOver, setGameOver] = useState({ over: false, text: "" });
 
   useEffect(() => {
     fetch(
-      `https://api.giphy.com/v1/gifs/search?api_key=VKKci5Qy96JPnJecC17snfZOxg3ROtDs&q=car&limit=${searchLimit}`
+      `https://api.giphy.com/v1/gifs/search?api_key=VKKci5Qy96JPnJecC17snfZOxg3ROtDs&q=${searchKeyword}&limit=${searchLimit}`
     )
       .then((res) => {
         return res.json();
@@ -15,7 +15,7 @@ const Game = ({ incrementScore, resetScore, searchLimit }) => {
       .then((data) => {
         setPhotos(data.data);
       });
-  }, [searchLimit]);
+  }, [searchLimit, searchKeyword]);
 
   const handleClick = (id) => {
     if (clickedPhotosIds.indexOf(id) === -1) {
@@ -56,13 +56,13 @@ const Game = ({ incrementScore, resetScore, searchLimit }) => {
     setPhotos(photosCpy);
   };
 
-  console.log(gameOver);
-
   return gameOver.over ? (
     <div className="gameOverDisplay">
       <p>{gameOver.text}</p>
       <button onClick={restartGame}>Restart</button>
     </div>
+  ) : photos.length === 0 ? (
+    <div>Could not find any gifs based on the theme provided</div>
   ) : (
     <div className="imagesContainer">
       {photos.map((photo) => (
