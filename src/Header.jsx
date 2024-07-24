@@ -15,40 +15,41 @@ const Header = ({ score, bestScore, getDifficulty, getTheme }) => {
 
   return (
     <header>
-      <div>
-        <h1>Memory game</h1>
-        <label htmlFor="difficulty">Choose a difficulty:</label>
-        <select
-          id="difficulty"
-          name="difficulty"
-          onChange={handleDifficultyChange}
-        >
-          <option value={6}>Easy</option>
-          <option value={10}>Medium</option>
-          <option value={12}>Hard</option>
-        </select>
-      </div>
-      <div className="scoreContainer">
-        <p>Score: {score}</p>
-        <p>Best Score: {bestScore}</p>
-      </div>
-      <div className="themeOptions">
-        <form action="#" onSubmit={handleThemeChange}>
-          <label htmlFor="themeUser">Change theme on a keyword: </label>
+      <div className="headerInfo">
+        <div className="titleAndDiffContainer">
+          <h1>Memory game</h1>
+          <label htmlFor="difficulty">Choose a difficulty: </label>
+          <select
+            id="difficulty"
+            name="difficulty"
+            onChange={handleDifficultyChange}
+          >
+            <option value={6}>Easy</option>
+            <option value={10}>Medium</option>
+            <option value={12}>Hard</option>
+          </select>
+        </div>
+        <div className="scoreContainer">
+          <p>Score: {score}</p>
+          <p>Best Score: {bestScore}</p>
+        </div>
+        <form className="keywordForm" action="#" onSubmit={handleThemeChange}>
           <input
             type="text"
             name="theme"
             id="themeUser"
             value={input}
+            placeholder="Theme keyword"
             onChange={(e) => {
               setInput(e.target.value);
             }}
             required
           />
-          <button type="submit">Search</button>
+          <button className="btn" type="submit">
+            Search
+          </button>
         </form>
       </div>
-      <p>Click on all images, but never click on one twice!</p>
     </header>
   );
 };

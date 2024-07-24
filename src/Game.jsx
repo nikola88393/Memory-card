@@ -20,16 +20,16 @@ const Game = ({ incrementScore, resetScore, searchLimit, searchKeyword }) => {
   const handleClick = (id) => {
     if (clickedPhotosIds.indexOf(id) === -1) {
       setClickedPhotosIds([...clickedPhotosIds, id]);
-      //if we are in this statement na the statement below is true
-      //the player win because the ClickedPhotosIds will update
+      //if we are in this statement and the statement below is true
+      //the player wins because the ClickedPhotosIds will update
       //after a re-render
       if (photos.length - 1 === clickedPhotosIds.length) {
-        setGameOver({ over: true, text: "You win!" });
+        setGameOver({ over: true, text: "You win! Good job!" });
       }
       incrementScore();
       shuffle();
     } else {
-      setGameOver({ over: true, text: "You lose!" });
+      setGameOver({ over: true, text: "You lose! Try again?" });
     }
   };
 
@@ -59,23 +59,33 @@ const Game = ({ incrementScore, resetScore, searchLimit, searchKeyword }) => {
   return gameOver.over ? (
     <div className="gameOverDisplay">
       <p>{gameOver.text}</p>
-      <button onClick={restartGame}>Restart</button>
+      <button className="btn" onClick={restartGame}>
+        Restart
+      </button>
     </div>
   ) : photos.length === 0 ? (
-    <div>Could not find any gifs based on the theme provided</div>
-  ) : (
-    <div className="imagesContainer">
-      {photos.map((photo) => (
-        <div className="imageCard" key={photo.id}>
-          <img
-            onClick={() => handleClick(photo.id)}
-            className="image"
-            src={photo.images.fixed_height.url}
-            alt={photo.title}
-          />
-        </div>
-      ))}
+    <div className="invalidSearchText">
+      Could not find any gifs based on the theme provided
     </div>
+  ) : (
+    <>
+      <h3 className="instructionsText">
+        Click on all images, but never click on one twice!
+      </h3>
+
+      <div className="imagesContainer">
+        {photos.map((photo) => (
+          <div className="imageCard" key={photo.id}>
+            <img
+              onClick={() => handleClick(photo.id)}
+              className="image"
+              src={photo.images.fixed_height.url}
+              alt={photo.title}
+            />
+          </div>
+        ))}
+      </div>
+    </>
   );
 };
 

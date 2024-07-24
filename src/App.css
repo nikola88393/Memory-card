@@ -9,6 +9,9 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  color: rgb(54, 54, 54);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 header {
   display: flex;
@@ -16,15 +19,15 @@ header {
   justify-content: flex-start;
   gap: 20px;
   padding: 20px;
-  background-color: var(--color1);
+  background-color: var(--background-color);
+  flex-wrap: wrap;
 }
 body {
   background-color: var(--background-color);
 }
 .imagesContainer {
-  width: 90%;
+  max-width: 2000px;
   margin: 0 auto;
-  /* border: 1px solid red; */
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -33,10 +36,9 @@ body {
   padding: 20px;
 }
 .imageCard {
-  /* border: 1px solid red; */
   background-color: var(--color2);
-  width: 300px;
-  height: 300px;
+  width: 280px;
+  height: 280px;
   padding: 10px;
   border-radius: 6px;
   box-shadow: var(--shadow);
@@ -52,11 +54,74 @@ body {
   object-fit: cover;
 }
 .gameOverDisplay {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  background-color: var(--background-color);
+  flex-direction: column;
+  gap: 10px;
+}
+.instructionsText,
+.invalidSearchText {
+  margin: 0 auto;
+  width: fit-content;
+  padding: 20px;
+}
+.headerInfo {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: red;
+  gap: 20px;
+}
+.scoreContainer {
+  border: 1px solid grey;
+  padding: 10px;
+  border-radius: 4px;
+}
+.titleAndDiffContainer {
+  width: fit-content;
+}
+.btn {
+  border: none;
+  padding: 8px 15px;
+  background-color: var(--color1);
+  border-radius: 4px;
+  color: black;
+  font-weight: 700;
+  box-shadow: var(--shadow);
+  transition: all 0.1s ease-out;
+  cursor: pointer;
+}
+.btn:hover {
+  opacity: 0.8;
+}
+.keywordForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+input {
+  padding: 6px;
+}
+
+@media (max-width: 1050px) {
+  .imageCard {
+    width: 200px;
+    height: 200px;
+  }
+  .headerInfo {
+    flex-direction: column;
+    align-items: start;
+  }
+}
+@media (max-width: 768px) {
+  .imageCard {
+    width: 150px;
+    height: 150px;
+  }
+  .imagesContainer {
+    padding: 5px;
+    gap: 10px;
+  }
 }
