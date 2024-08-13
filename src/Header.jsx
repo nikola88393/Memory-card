@@ -1,6 +1,6 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
-/* eslint-disable react/prop-types */
 const Header = ({ score, bestScore, getDifficulty, getTheme }) => {
   const [input, setInput] = useState("");
 
@@ -54,4 +54,10 @@ const Header = ({ score, bestScore, getDifficulty, getTheme }) => {
   );
 };
 
+Header.propTypes = {
+  score: PropTypes.number.isRequired,
+  bestScore: PropTypes.number.isRequired,
+  getDifficulty: PropTypes.func.isRequired,
+  getTheme: PropTypes.func.isRequired,
+};
 export default Header;

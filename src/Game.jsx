@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 const Game = ({ incrementScore, resetScore, searchLimit, searchKeyword }) => {
   const [photos, setPhotos] = useState([]);
@@ -87,6 +87,13 @@ const Game = ({ incrementScore, resetScore, searchLimit, searchKeyword }) => {
       </div>
     </>
   );
+};
+
+Game.propTypes = {
+  incrementScore: PropTypes.func.isRequired,
+  resetScore: PropTypes.func.isRequired,
+  searchLimit: PropTypes.number.isRequired,
+  searchKeyword: PropTypes.string.isRequired,
 };
 
 export default Game;
